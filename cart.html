@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart | Thangamayil</title>
+    <link rel="icon" type="image/x-icon" href="img\tanishq_logo_browser_top.png">
+    <link rel="stylesheet" href="cart.css">
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="navbar.css">
+    <link rel="stylesheet" href="newstyle.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <script src="https://kit.fontawesome.com/78d13b8fa3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="nav1">
+        <div class="icons1">
+            <a href="#">AUSPICIOUS DAY</a>
+            <a href="#">QUICK PAY</a>
+            <a href="#">BLOG</a>
+        </div>
+    </div class="marquee">
+    <marquee behavior="scroll" direction="left">GOLD RATE 22k (1gm) - ₹6660 , GOLD RATE 24k (1gm) - ₹7265 , GOLD RATE 18k (1gm) - ₹5449 , SILVER RATE (1gm) - ₹86.50</marquee>
+</div>
+    </div>
+
+    <div class="nav">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+        <div class="icons">
+            <a href="newlogin.php">Login</a>
+            <a href="cart.html">Cart</a>
+            <a href="payment.html">Payment</a>
+        </div>
+    </div>
+    <div class="navbar">
+        <a href="home.html">HOME</a>
+        <a href="jewels.html">GOLD JEWELLERY</a>
+        <a href="diamond.html">DIAMOND</a>
+        <a href="silver.html">SILVER</a>
+        <a href="#">COINS</a>
+        <a href="#">GIFTS (PUNNAGAI)</a>
+        <a href="cart.html">CART</a>
+        <a href="checkout.html">CHECKOUT</a>
+    </div>
+    <div id="container1">
+        <h1 class="word">CART : 1 ITEM</h1>
+            <br>
+        <div id="cart">
+            <div>
+                
+                <div id="cartItemTitle">
+                    <p>ITEM(S)</p>
+                    <p>QUANTITY</p>
+                    <p>TOTAL</p>
+                </div>
+
+                <div id="productContainer">
+                    <div id="showProduct">
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="summary">
+                <h1>ORDER SUMMARY</h1>
+                <P>Enter Voucher Code</P>
+                <input type="text" id="inputVoucher">
+                <button id="btnVoucher">APPLY</button>
+
+                <p>Order Total</p> 
+                <h2 id="sumTotal"></h2>
+
+                <p>Shipping</p> 
+                <h2>FREE</h2>
+
+                <p>discount</p> 
+                <h2 id="sumDiscount"></h2>
+
+                <h3>You Pay</h3> 
+                <h2 id="SumPay"></h2>
+
+                <h3>Inclusive of all taxes*</h3>
+
+                <h3 id="red">You Save</h3>
+                 <h2 id="saving"></h2>
+
+                <button id="btnCheckout" onclick="checkout()">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+    <!-- <footer>
+        <div class="footer-content">
+            <p>©Copyright 2023 by Thangamayil Jewellery Limited. All Rights Reserved.</p>
+        </div>
+    </footer> -->
+    <!-- <div style="margin-top: 50px;" id="footer"></div> -->
+    
+</body>
+</html>
+
+<script type="module">
+    import {navbar} from './components/navbar.js';
+    let N = document.getElementById("navbar");
+    N.innerHTML = navbar();
+
+    let database = JSON.parse(localStorage.getItem("cart")) || [];
+     let ac = document.getElementById("cart1")
+    //  cart.push(products)
+    ac.innerText = `CART(${database.length})`
+    console.log(ac)
+
+    import {footer} from './components/footer.js';
+    let F = document.getElementById("footer");
+    F.innerHTML = footer();
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        let word = document.querySelector(".word");
+        word.innerText = `CART: ${cart.length} ITEM${cart.length > 1 ? 'S' : ''}`;
+
+        const showProduct = document.getElementById("showProduct");
+        showProduct.innerHTML = "";
+
+        cart.forEach((elem, index) => {
+            const div = document.createElement("div");
+
+            const image = document.createElement("img");
+            image.src = elem.image;
+            image.alt = elem.title;
+
+            const title = document.createElement("h3");
+            title.setAttribute("id", "title");
+            title.innerText = elem.title;
+
+            const price = document.createElement("h3");
+            price.innerText = `₹${elem.price}`;
+            price.setAttribute("id", "price");
+
+            const qty = document.createElement("input");
+            qty.setAttribute("id", "qty");
+            qty.value = 1;
+            qty.type = "number";
+            qty.min = 1;
+            qty.addEventListener("change", () => updateTotal(price, qty, total));
+
+            const total = document.createElement("h3");
+            total.setAttribute("id", "total");
+            total.innerText = `₹${elem.price}`;
+
+            const removeButton = document.createElement("button");
+            removeButton.innerText = "Remove";
+            removeButton.addEventListener("click", () => removeFromCart(index));
+
+            const div2 = document.createElement("div");
+            div2.append(title, price, qty, total, removeButton);
+
+            div.append(image, div2);
+            showProduct.append(div);
+        });
+
+        function updateTotal(priceElement, qtyElement, totalElement) {
+            const price = parseFloat(priceElement.innerText.replace('₹', ''));
+            const qty = parseInt(qtyElement.value);
+            totalElement.innerText = `₹${(price * qty).toFixed(2)}`;
+            updateSummary();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            location.reload(); // Reload the page to reflect changes
+        }
+
+        function updateSummary() {
+            let sumTotal = 0;
+            let sumDiscount = 0;
+
+            cart.forEach((elem) => {
+                const price = parseFloat(elem.price);
+                sumTotal += price;
+            });
+
+            document.getElementById("sumTotal").innerText = `₹${sumTotal}`;
+            document.getElementById("SumPay").innerText = `₹${sumTotal - sumDiscount}`;
+            document.getElementById("saving").innerText = `₹${sumDiscount}`;
+            document.getElementById("sumDiscount").innerText = `₹${sumDiscount}`;
+        }
+
+        updateSummary();
+    });
+
+    function checkout() {
+        window.location.href = "checkout.html";
+    }
+</script>

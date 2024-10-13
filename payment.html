@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img\tanishq_logo_browser_top.png">
+    <title>Payment | Thangamayil</title>
+    <link rel="stylesheet" href="newstyle.css">
+    <link rel="stylesheet" href="paystyle.css">
+</head>
+<body>
+    <div class="nav1">
+        <div class="icons1">
+            <a href="#">AUSPICIOUS DAY</a>
+            <a href="#">QUICK PAY</a>
+            <a href="#">BLOG</a>
+        </div>
+    </div class="marquee">
+    <marquee behavior="scroll" direction="left">GOLD RATE 22k (1gm) - ₹6660 , GOLD RATE 24k (1gm) - ₹7265 , GOLD RATE 18k (1gm) - ₹5449 , SILVER RATE (1gm) - ₹86.50</marquee>
+</div>
+    </div>
+
+    <div class="nav">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+        <div class="icons">
+            <a href="newlogin.php">Login</a>
+            <a href="cart.html">Cart</a>
+            <a href="payment.html">Payment</a>
+        </div>
+    </div>
+    <div class="navbar">
+        <a href="home.html">HOME</a>
+        <a href="jewels.html">GOLD JEWELLERY</a>
+        <a href="diamond.html">DIAMOND</a>
+        <a href="silver.html">SILVER</a>
+        <a href="#">COINS</a>
+        <a href="#">GIFTS (PUNNAGAI)</a>
+        <a href="cart.html">CART</a>
+        <a href="checkout.html">CHECKOUT</a>
+    </div>
+
+    
+    <div id="one">
+
+        <div id="oneA">
+            <h3>Select a payment method</h3>
+            <div>
+                <h4>Credit/Debit Card</h4>
+                <p>Visa, Mastercard, Maestro, Rupay</p>
+            </div>
+            <div>
+                <h4>Netbanking</h4>
+                <p>Pay with Internet Banking Account</p>
+            </div>
+            <!-- <div>
+                <h4>Wallet</h4>
+                <p>Pay using a Wallet</p>
+            </div> -->
+            <div>
+                <h4>UPI</h4>
+                <p>Pay with a UPI Account</p>
+                <img src="img/QRScanner.jpeg" style="height: 200px; width: 230px; margin-left: 40px; margin-bottom: 20px;">
+            </div>
+        </div>
+
+
+        <div id="oneB">
+            <h3>Pay with Credit/Debit Card</h3>
+            <p class="grey">Card Number</p>
+            <input type="number" placeholder="Enter Card Number" id="cardNo">
+
+            <p class="grey">Expiry Date</p>
+            <input type="text" placeholder="MM/YY" id="expiry">
+
+            <p class="grey">CVV</p>
+            <input type="password" placeholder="CVV" id="cvv">
+
+            <p class="grey">Cardholder's Name</p>
+            <input type="text" placeholder="Full Name">
+
+            <button id="btnPay" onclick="functionpay()">PAY NOW</button>
+
+            <p>Powered by</p>
+            <img src="https://cdn.razorpay.com/logo.svg" alt="">
+        </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>©Copyright 2023 by Thangamayil Jewellery Limited. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
+<script>
+    function functionpay(){
+        let cardNo = document.getElementById("cardNo").value;
+        let expiryDate = document.getElementById("expiry").value;
+        let cvv = document.getElementById("cvv").value;
+        let name = document.getElementById("cvv").value;
+
+        if (cardNo=="" || expiryDate=="" || cvv=="" || name=="")
+        {
+            alert("Please fill all details")
+        }
+        else if (cardNo.length != 16)
+        {
+            alert("Please enter valid Card details")
+        }
+
+        else {
+            alert("Payment done successfully")
+            window.location.href = "home.html";
+        }
+
+    
+
+    }
+</script>

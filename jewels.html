@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Gold Jewellery | Thangamayil</title>
+    <link rel="stylesheet" href="jewels.css">
+    <link rel="stylesheet" href="newstyle.css">
+</head>
+
+<body>
+    <div class="nav1">
+        <div class="icons1">
+            <a href="#">AUSPICIOUS DAY</a>
+            <a href="#">QUICK PAY</a>
+            <a href="#">BLOG</a>
+        </div>
+    </div>
+    <div class="marquee">
+        <marquee behavior="scroll" direction="left">GOLD RATE 22k (1gm) - ₹6660 , GOLD RATE 24k (1gm) - ₹7265 , GOLD
+            RATE 18k (1gm) - ₹5449 , SILVER RATE (1gm) - ₹86.50</marquee>
+    </div>
+
+    <div class="nav">
+        <div class="logo">
+            <img src="logo.png" alt="Logo">
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search...">
+            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+        </div>
+        <div class="icons">
+            <a href="newlogin.php">Login</a>
+            <a href="cart.html">Cart</a>
+            <a href="payment.html">Payment</a>
+        </div>
+    </div>
+    <div class="navbar">
+        <a href="home.html">HOME</a>
+        <a href="jewels.html">GOLD JEWELLERY</a>
+        <a href="diamond.html">DIAMOND</a>
+        <a href="silver.html">SILVER</a>
+        <a href="#">COINS</a>
+        <a href="#">GIFTS (PUNNAGAI)</a>
+        <a href="cart.html">CART</a>
+        <a href="checkout.html">CHECKOUT</a>
+    </div>
+    <!-- Products -->
+    <div class="container">
+        <h1>GOLD JEWELLERY</h1>
+        <div class="footer-separator"></div>
+        <div class="product-grid">
+
+            <!-- Product 1 -->
+            <div class="product-card" id="product-1">
+                <img src="jewels/jewel01.jpg" alt="Gold Ring">
+                <h2>Gold Ring</h2>
+                <p>Price: ₹30,000</p>
+                <p>Rating: ★★★★☆</p>
+                <button class="add-to-cart" data-id="1" data-title="Gold Ring" data-price="30000"
+                    data-image="jewels/jewel01.jpg">Add to Cart</button>
+            </div>
+            <!-- Repeat for other products with unique data-id, data-title, etc. -->
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="jewels/jewel02.jpg" alt="Jewel 2">
+                <h2>Gold Necklace</h2>
+                <p>Price: ₹50,000</p>
+                <p>Rating: ★★★★★</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="jewels/jewel03.jpg" alt="Jewel 3">
+                <h2>Gold Bracelet</h2>
+                <p>Price: ₹25,000</p>
+                <p>Rating: ★★★★☆</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="jewels/jewel04.jpg" alt="Jewel 4">
+                <h2>Gold Earrings</h2>
+                <p>Price: ₹15,000</p>
+                <p>Rating: ★★★★☆</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Product 5 -->
+            <div class="product-card">
+                <img src="jewels/jewel05.jpg" alt="Jewel 5">
+                <h2>Gold Ring</h2>
+                <p>Price: ₹10,000</p>
+                <p>Rating: ★★★☆☆</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+            <!-- Product 6 -->
+            <div class="product-card">
+                <img src="jewels/jewel06.jpg" alt="Jewel 6">
+                <h2>Gold Bracelet</h2>
+                <p>Price: ₹20,000</p>
+                <p>Rating: ★★★★★</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-separator"></div>
+    <footer>
+        <div class="footer-content">
+            <p>©Copyright 2023 by Thangamayil Jewellery Limited. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!----script-->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', () => {
+                    const id = button.getAttribute('data-id');
+                    const title = button.getAttribute('data-title');
+                    const price = button.getAttribute('data-price');
+                    const image = button.getAttribute('data-image');
+    
+                    const product = { id, title, price, image };
+                    cart.push(product);
+                    localStorage.setItem('cart', JSON.stringify(cart));
+    
+                    alert(`${title} has been added to your cart.`);
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>
